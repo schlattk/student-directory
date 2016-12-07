@@ -12,13 +12,14 @@ puts "what is the age"
 age = gets.chomp
 puts "What is her cohort?"
 cohort = gets.chomp
+if cohort == "november" || cohort == "december" || cohort == "january"
+else
 2.times do
-if cohort != "november"
 puts ("please put a valid cohort name")
 cohort = gets.chomp
 end
-end
 cohort = "november"
+end
 while !name.empty? do
 # add the student hash to the array
 students << {name: name, hobby:hobby, age:age, cohort: cohort.to_sym}
@@ -32,18 +33,22 @@ age = gets.chomp
 puts "cohort"
 cohort = gets.chomp
 if !name.empty?
+if cohort == "november" || cohort == "december" || cohort == "january"
+else
 2.times do
-if cohort != "november"
 puts ("please put a valid cohort name")
 cohort = gets.chomp
 end
-end
 cohort = "november"
+end
 end
 end
 #return the array of students
 students
 end
+
+
+
 
 def print_header
   puts "The students of Villains Academy"
@@ -51,9 +56,18 @@ def print_header
 end
 
 def print(students)
+  puts "which cohort would you like to print"
+  group = gets.chomp.to_sym
+  group_list = []
+  students.each do |students|
+  if students[:cohort] == group
+      group_list.push(students)
+    end
+  end
+
   i = 0
-  while i < students.length do
-  puts "#{(students[i][:name]).center(20)} #{('hobby:' + students[i][:hobby]).center(20)} #{('age:' + students[i][:age]).center(10)} (#{((students[i][:cohort]).to_s + ' cohort').center(20)})"
+  while i < group_list.length do
+  puts "#{(group_list[i][:name]).center(20)} #{('hobby:' + group_list[i][:hobby]).center(20)} #{('age:' + group_list[i][:age]).center(10)} (#{((group_list[i][:cohort]).to_s + ' cohort').center(20)})"
     i = i + 1
   end
 end
