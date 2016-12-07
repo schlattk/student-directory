@@ -23,7 +23,11 @@ end
 while !name.empty? do
 # add the student hash to the array
 students << {name: name, hobby:hobby, age:age, cohort: cohort.to_sym}
+if students.count == 1
+puts "Now we have 1 student"  
+else
 puts "Now we have #{students.count} students"
+end
 #get another name from the user
 name = gets.chomp
 puts "hobby?"
@@ -73,7 +77,11 @@ def print(students)
 end
 
 def print_footer(students)
+if students.count == 1
+puts "Overall, we have #{students.count} great student"
+else
 puts "Overall, we have #{students.count} great students"
+end
 end
 
 students = input_students
