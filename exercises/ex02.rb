@@ -5,7 +5,6 @@ puts "to finish, just hit return twice"
 students = []
 #get the first names
 name = gets.chomp
-#while the name is not empty repeat this code
 puts "what is her hobby?"
 hobby = gets.chomp
 puts "what is the age"
@@ -24,7 +23,7 @@ while !name.empty? do
 # add the student hash to the array
 students << {name: name, hobby:hobby, age:age, cohort: cohort.to_sym}
 if students.count == 1
-puts "Now we have 1 student"  
+puts "Now we have 1 student"
 else
 puts "Now we have #{students.count} students"
 end
@@ -47,8 +46,10 @@ cohort = "november"
 end
 end
 end
+
 #return the array of students
 students
+
 end
 
 
@@ -69,12 +70,14 @@ def print(students)
     end
   end
 
+
   i = 0
   while i < group_list.length do
   puts "#{(group_list[i][:name]).center(20)} #{('hobby:' + group_list[i][:hobby]).center(20)} #{('age:' + group_list[i][:age]).center(10)} (#{((group_list[i][:cohort]).to_s + ' cohort').center(20)})"
     i = i + 1
   end
 end
+
 
 def print_footer(students)
 if students.count == 1
@@ -85,6 +88,10 @@ end
 end
 
 students = input_students
+if students.count > 0
 print_header
 print(students)
 print_footer(students)
+else
+puts "There are no students"
+end
