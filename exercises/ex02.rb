@@ -10,9 +10,18 @@ puts "what is her hobby?"
 hobby = gets.chomp
 puts "what is the age"
 age = gets.chomp
+puts "What is her cohort?"
+cohort = gets.chomp
+2.times do
+if cohort != "november"
+puts ("please put a valid cohort name")
+cohort = gets.chomp
+end
+end
+cohort = "november"
 while !name.empty? do
 # add the student hash to the array
-students << {name: name, hobby:hobby, age:age, cohort: :november}
+students << {name: name, hobby:hobby, age:age, cohort: cohort.to_sym}
 puts "Now we have #{students.count} students"
 #get another name from the user
 name = gets.chomp
@@ -20,6 +29,17 @@ puts "hobby?"
 hobby = gets.chomp
 puts "age?"
 age = gets.chomp
+puts "cohort"
+cohort = gets.chomp
+if !name.empty?
+2.times do
+if cohort != "november"
+puts ("please put a valid cohort name")
+cohort = gets.chomp
+end
+end
+cohort = "november"
+end
 end
 #return the array of students
 students
@@ -33,7 +53,7 @@ end
 def print(students)
   i = 0
   while i < students.length do
-  puts "#{students[i][:name]} hobby #{students[i][:hobby]} age #{students[i][:age]} (#{students[i][:cohort]} cohort)"
+  puts "#{(students[i][:name]).center(20)} #{('hobby:' + students[i][:hobby]).center(20)} #{('age:' + students[i][:age]).center(10)} (#{((students[i][:cohort]).to_s + ' cohort').center(20)})"
     i = i + 1
   end
 end
