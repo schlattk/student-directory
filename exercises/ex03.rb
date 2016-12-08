@@ -48,7 +48,6 @@ name = STDIN.gets.chomp
 while !name.empty? do
 # add the student hash to the array
 update_students(name,"november")
-#@students << {name: name, cohort: :november}
 puts "Now we have #{@students.count} students"
 #get another name from the user
 name = STDIN.gets.chomp
@@ -64,6 +63,7 @@ def save_students
     csv_line = student_data.join(",")
     file.puts csv_line
   end
+  puts "file saved"
   file.close
 end
 
@@ -72,21 +72,26 @@ def update_students(name,cohort)
 end
 
 def load_students(filename = "students.csv")
+  if @students.empty?
   file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
   update_students(name,cohort)
-  #@students << {name: name, cohort: cohort.to_sym}
   end
+  puts "loaded #{@students.count} students from #{filename}"
   file.close
+  else
+  puts "#{@students.count}students have already been loaded"
+  end
 end
 
 def try_load_students
   filename = ARGV.first #first argument from the command line
-  return if filename.nil?
+  if filename.nil?
+    filename = "students.csv"
+  end
   if File.exists?(filename)
     load_students(filename)
-    puts "loaded #{@students.count} from #{filename}"
   else
     puts "Sorry, #{filename} does not exist."
     exit
